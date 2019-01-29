@@ -18,7 +18,7 @@ class BatchHandler(object):
     larger then the batch size.
 
     Example usage:
-    >>> reader = Reader('topic', 'worker', async=True, max_in_flight=16)
+    >>> reader = Reader('topic', 'worker', async_mode=True, max_in_flight=16)
     >>> reader.on_message.connect(BatchHandler(8, my_handler), weak=False)
     """
     def __init__(self, batch_size, handle_batch=None, handle_message=None,

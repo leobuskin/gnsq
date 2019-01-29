@@ -9,6 +9,7 @@ History
 
 * Drop support for python 2.6 and python 3.3
 * Handle changing connections during redistribute ready
+* Add support for python 3.7+ (async keyword)
 
 
 0.4.0 (2017-06-13)

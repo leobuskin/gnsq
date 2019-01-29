@@ -86,13 +86,13 @@ class Stream(object):
 
         return data
 
-    def send(self, data, async=False):
+    def send(self, data, async_mode=False):
         self.ensure_connection()
 
         result = AsyncResult()
         self.queue.put((data, result))
 
-        if async:
+        if async_mode:
             return result
 
         result.get()

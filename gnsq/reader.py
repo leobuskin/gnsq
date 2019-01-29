@@ -37,7 +37,7 @@ class Reader(object):
     `message_handler`.
 
     Messages will automatically be finished when the message handle returns
-    unless the readers `async` flag is set to `True`. If an exception occurs or
+    unless the readers `async_mode` flag is set to `True`. If an exception occurs or
     :class:`gnsq.errors.NSQRequeueMessage` is raised, the message will be
     requeued.
 
@@ -61,7 +61,7 @@ class Reader(object):
     :param message_handler: the callable that will be executed for each message
         received
 
-    :param async: consider the message handling to be async. The message will
+    :param async_mode: consider the message handling to be async. The message will
         not automatically be finished after the handler returns and must
         manually be called
 
@@ -107,7 +107,7 @@ class Reader(object):
         lookupd_http_addresses=[],
         name=None,
         message_handler=None,
-        async=False,
+        async_mode=False,
         max_tries=5,
         max_in_flight=1,
         max_concurrency=0,
@@ -132,7 +132,7 @@ class Reader(object):
 
         self.topic = topic
         self.channel = channel
-        self.async = async
+        self.async_mode = async_mode
         self.max_tries = max_tries
         self.max_in_flight = max_in_flight
         self.requeue_delay = requeue_delay
@@ -689,7 +689,7 @@ class Reader(object):
         if not self.is_running:
             return
 
-        if self.async:
+        if self.async_mode:
             return
 
         if message.has_responded():

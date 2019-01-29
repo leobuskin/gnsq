@@ -234,9 +234,9 @@ class Nsqd(HTTPClient):
         self.state = DISCONNECTED
         self.on_close.send(self)
 
-    def send(self, data, async=False):
+    def send(self, data, async_mode=False):
         try:
-            return self.stream.send(data, async)
+            return self.stream.send(data, async_mode)
         except Exception:
             self.close_stream()
             raise
